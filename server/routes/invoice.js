@@ -1,21 +1,16 @@
-const express = require('express');
+const express = require("express");
+const { validateInvoice, validate } = require("../middleware/validation");
+const { addInvoice, getAllInvoices, deleteInvoice } = require("../controllers/invoice");
+
 const router = express.Router();
-const { validateInvoice, validateId, validate } = require('../middleware/validation');
-const invoiceController = require('../controllers/invoice');
 
-// Create invoice - validate full invoice data
-router.post('/', validateInvoice, validate, invoiceController.createInvoice);
+// Add invoice route with validation
+router.route("/").post(validateInvoice, validate, addInvoice);
 
-// Get all invoices - no validation needed
-router.get('/', invoiceController.getAllInvoices);
+// Get all invoices route
+router.route("/all").get(getAllInvoices);
 
-// Get single invoice - validate ID
-router.get('/:id', validateId, validate, invoiceController.getInvoiceById);
-
-// Update invoice - validate both ID and invoice data
-router.put('/:id', validateId, validateInvoice, validate, invoiceController.updateInvoice);
-
-// Delete invoice - validate ID
-router.delete('/:id', validateId, validate, invoiceController.deleteInvoice);
+// Delete invoice route by ID
+router.route("/:id").delete(deleteInvoice);
 
 module.exports = router;

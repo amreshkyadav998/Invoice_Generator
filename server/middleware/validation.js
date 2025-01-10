@@ -7,25 +7,33 @@ exports.validateInvoice = [
     .notEmpty().withMessage('Customer name is required')
     .isLength({ min: 2 }).withMessage('Customer name must be at least 2 characters long'),
   
-  check('email')
+  check('customerEmail')
     .trim()
     .notEmpty().withMessage('Email is required')
     .isEmail().withMessage('Invalid email format'),
   
-  // Items validation
-  check('items')
-    .isArray().withMessage('Items must be an array')
-    .notEmpty().withMessage('At least one item is required'),
-  
-  check('items.*.description')
+  // Products validation
+  check('products')
+    .isArray().withMessage('Products must be an array')
+    .notEmpty().withMessage('At least one product is required'),
+
+  check('products.*.name')
     .trim()
-    .notEmpty().withMessage('Item description is required'),
-  
-  check('items.*.quantity')
+    .notEmpty().withMessage('Product name is required'),
+
+  check('products.*.quantity')
     .isInt({ min: 1 }).withMessage('Quantity must be at least 1'),
-  
-  check('items.*.price')
+
+  check('products.*.price')
     .isFloat({ min: 0 }).withMessage('Price must be a positive number'),
+  
+  // Tax validation
+  check('tax')
+    .isFloat({ min: 0 }).withMessage('Tax must be a non-negative number'),
+
+  // Total validation
+  check('total')
+    .isFloat({ min: 0 }).withMessage('Total must be a non-negative number'),
 ];
 
 exports.validateId = [
