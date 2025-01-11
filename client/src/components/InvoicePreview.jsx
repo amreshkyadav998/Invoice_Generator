@@ -9,7 +9,7 @@ const InvoicePreview = () => {
     // Fetch the invoice based on the ID
     const fetchInvoice = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/api/invoices/all`);
+          const response = await fetch(`https://invoice-generatorbac.onrender.com/api/invoices/all`);
           if (!response.ok) {
             throw new Error(`Failed to fetch invoices: ${response.statusText}`);
           }

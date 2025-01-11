@@ -48,7 +48,7 @@ const InvoiceForm = ({ onInvoiceSaved }) => {
       const taxAmount = (total * formData.tax) / 100;
       const invoice = { ...formData, total: total + taxAmount };
 
-      const response = await fetch("http://localhost:5000/api/invoices", {
+      const response = await fetch("https://invoice-generatorbac.onrender.com/api/invoices", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

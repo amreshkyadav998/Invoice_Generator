@@ -21,7 +21,7 @@ const InvoiceList = () => {
 
   const fetchInvoices = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/invoices/all");
+      const response = await fetch("https://invoice-generatorbac.onrender.com/api/invoices/all");
       if (!response.ok) {
         throw new Error("Failed to fetch invoices");
       }
@@ -41,7 +41,7 @@ const InvoiceList = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/invoices/${selectedInvoiceId}`,
+        `https://invoice-generatorbac.onrender.com/api/invoices/${selectedInvoiceId}`,
         { method: "DELETE" }
       );
       if (!response.ok) {
