@@ -9,6 +9,8 @@ router.route("/").post(validateInvoice, validate, addInvoice);
 
 // Get all invoices route
 router.route("/all").get(getAllInvoices);
+router.route("/:id").get(getAllInvoices);
+
 
 // Delete invoice route by ID
 router.route("/:id").delete(deleteInvoice);
